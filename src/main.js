@@ -24,7 +24,6 @@ Vue.use(Empty)
 // Loading 加载组件
 Vue.use(Loading)
 
-
 Vue.config.productionTip = false
 
 new Vue({
