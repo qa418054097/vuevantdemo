@@ -21,7 +21,6 @@
         设置
       </van-tabbar-item>
     </van-tabbar>
-
   </div>
 </template>
 
