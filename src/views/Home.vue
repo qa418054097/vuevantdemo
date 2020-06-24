@@ -2,9 +2,10 @@
   <div class="home">
     <van-nav-bar v-if="this.$route.meta.showNavBar" :title="this.$route.meta.navBarTitle" fixed>
     </van-nav-bar>
+    <Container>
     <router-link to='/detail'>页面详情跳转</router-link>
     <div>{{sysParams}}</div>
-
+    </Container>
   </div>
 </template>
 <style lang="sass" scoped>

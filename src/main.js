@@ -3,9 +3,13 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import api from './api'
-import { Button, Cell, CellGroup, Icon, Image as VanImage, Col, Row, Popup, Tabbar, TabbarItem, NavBar, Empty, Loading } from 'vant'
 import 'amfe-flexible'
+import { Button, Cell, CellGroup, Icon, Image as VanImage, Col, Row, Popup, Tabbar, TabbarItem, NavBar, Empty, Loading } from 'vant'
+import { Container } from './components/common'
+
 Vue.prototype.$api = api
+// app容器
+Vue.use(Container)
 // Vant基础组件
 Vue.use(Button)
 Vue.use(Cell)
