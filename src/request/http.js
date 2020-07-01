@@ -118,7 +118,7 @@ instance.interceptors.response.use(
       store.commit('changeNetworkSuccess', false)
       tip('网络异常!')
       store.commit('hideLoading')
-      router.push({ path: 'refresh' })
+      // router.push({ path: 'refresh' })
     }
   })
 

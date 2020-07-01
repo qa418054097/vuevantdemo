@@ -4,7 +4,7 @@
     <van-loading type="spinner" color="#07c160" size="36px" />
     </div>
     <transition :name="transitionName">
-      <router-view
+      <router-view v-if="isRouterAlive"
         :class="{'has-nav-bar' : this.$route.meta.showNavBar , 'has-tab-bar' : this.$route.meta.showTabBar }"></router-view>
     </transition>
     <van-tabbar v-if="this.$route.meta.showTabBar" route active-color="#07c160" inactive-color="#000" >
@@ -30,10 +30,16 @@
   import { mapGetters } from 'vuex'
   export default {
     name: 'App',
+    provide () {
+      return {
+        reload: this.reload
+      }
+    },
     data () {
       return {
         transitionName: '',
-        noTransitionRoutesMap: {}
+        noTransitionRoutesMap: {},
+        isRouterAlive: true
       }
     },
     mounted () {
@@ -43,7 +49,15 @@
         }
       })
     },
-    methods: {},
+    methods: {
+      reload () {
+        this.isRouterAlive = false
+        this.$nextTick(function () {
+          console.log(this.isRouterAlive)
+          this.isRouterAlive = true
+        })
+      }
+    },
     computed: {
       ...mapGetters([
         'isLoading'

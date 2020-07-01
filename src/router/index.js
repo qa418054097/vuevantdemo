@@ -68,14 +68,6 @@ const routes = [
       showNavBar: true
     },
     component: () => import('../views/Detail.vue')
-  },
-  {
-    path: '/refresh',
-    name: 'Refresh',
-    meta: {
-      noTransition: true
-    },
-    component: () => import('../views/Refresh.vue')
   }
 ]
 

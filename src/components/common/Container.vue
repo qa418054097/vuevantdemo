@@ -1,16 +1,29 @@
 <template>
-    <div class="container">
+  <div>
+    <div v-if="networkSuccess" class="container">
       <slot></slot>
     </div>
+    <Refresh></Refresh>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: 'Container'
+  import { mapState } from 'vuex'
+  export default {
+    name: 'Container',
+    data () {
+      return {}
+    },
+    methods: {
+
+    },
+    computed: {
+      ...mapState(['networkSuccess'])
     }
+  }
 </script>
 
 <style lang="sass" scoped>
   .container
-   padding: 10px
+    padding: 0
 </style>

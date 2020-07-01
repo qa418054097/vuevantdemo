@@ -13,12 +13,13 @@
   import { mapState } from 'vuex'
     export default {
       name: 'Refresh',
+      inject: ['reload'],
       data () {
         return {}
       },
       methods: {
         onRefresh () {
-          this.$router.go(-1) // 返回之前点击的页面
+          this.reload()
         }
       },
       computed: {
