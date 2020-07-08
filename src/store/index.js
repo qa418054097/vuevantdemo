@@ -9,7 +9,7 @@ const state = {
   isLoading: false,
   networkSuccess: true,
   requesting: false,
-  error: {},
+  error: null,
   token: '' // 缓存用户登录后后端接口返回的Token
 }
 
@@ -25,16 +25,17 @@ const mutations = {
     state.token = token
   },
   changeNetworkSuccess (state, val) {
-    debugger
     state.networkSuccess = val
   },
   showLoading (state) {
-    debugger
     state.isLoading = true
   },
   hideLoading (state) {
-    debugger
     state.isLoading = false
+  },
+  errorMessage (state, message) {
+    debugger
+    state.error = message
   }
 }
 

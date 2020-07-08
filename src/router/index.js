@@ -15,9 +15,11 @@ const routes = [
     component: Home,
     meta: {
       navBarTitle: '首页',
+      noShowBackBtn: true,
       showNavBar: true,
       showTabBar: true,
-      noTransition: true
+      noTransition: true,
+      keepAlive: true
     }
     // children: [
     //   {
@@ -32,9 +34,11 @@ const routes = [
     name: 'Search',
     meta: {
       navBarTitle: '搜索',
+      noShowBackBtn: true,
       showNavBar: true,
       showTabBar: true,
-      noTransition: true
+      noTransition: true,
+      keepAlive: true
     },
     component: () => import('../views/Search.vue')
   },
@@ -43,9 +47,11 @@ const routes = [
     name: 'Friends',
     meta: {
       navBarTitle: '朋友',
+      noShowBackBtn: true,
       showNavBar: true,
       showTabBar: true,
-      noTransition: true
+      noTransition: true,
+      keepAlive: true
     },
     component: () => import('../views/Friends.vue')
   },
@@ -54,9 +60,11 @@ const routes = [
     name: 'Setting',
     meta: {
       navBarTitle: '设置',
+      noShowBackBtn: true,
       showNavBar: true,
       showTabBar: true,
-      noTransition: true
+      noTransition: true,
+      keepAlive: true
     },
     component: () => import('../views/Setting.vue')
   },
@@ -74,7 +82,19 @@ const routes = [
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    debugger
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      if (from.meta.keepAlive) {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
+        from.meta.savedPosition = scrollTop
+      }
+      return { x: 0, y: to.meta.savedPosition || 0 }
+    }
+  }
 })
 
 export default router

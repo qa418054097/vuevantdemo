@@ -17,7 +17,7 @@ module.exports = {
   },
   chainWebpack: config => {
     // 配置全局Sass样式
-    const oneOfsMap = config.module.rule('sass').oneOfs.store
+    const oneOfsMap = config.module.rule('scss').oneOfs.store
     oneOfsMap.forEach(item => {
       item
         .use('sass-resources-loader')
@@ -25,7 +25,7 @@ module.exports = {
         .options({
           // Provide path to the file with resources
           // Or array of paths
-          resources: ['./src/common.sass']
+          resources: ['./src/common.scss']
         })
         .end()
     })

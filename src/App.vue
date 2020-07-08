@@ -1,10 +1,15 @@
 <template>
   <div id="app">
-    <div v-if="isLoading" class="loading">
-    <van-loading type="spinner" color="#07c160" size="36px" />
-    </div>
+    <van-nav-bar  :left-text="!this.$route.meta.noShowBackBtn ? '返回' : ''" :left-arrow="!this.$route.meta.noShowBackBtn" v-if="this.$route.meta.showNavBar" :title="this.$route.meta.navBarTitle" fixed @click-left="onBack">
+    </van-nav-bar>
     <transition :name="transitionName">
-      <router-view v-if="isRouterAlive"
+      <keep-alive>
+      <router-view v-if="isRouterAlive && $route.meta.keepAlive"
+                   :class="{'has-nav-bar' : this.$route.meta.showNavBar , 'has-tab-bar' : this.$route.meta.showTabBar }"></router-view>
+      </keep-alive>
+    </transition>
+    <transition :name="transitionName">
+      <router-view v-if="isRouterAlive && !$route.meta.keepAlive"
         :class="{'has-nav-bar' : this.$route.meta.showNavBar , 'has-tab-bar' : this.$route.meta.showTabBar }"></router-view>
     </transition>
     <van-tabbar v-if="this.$route.meta.showTabBar" route active-color="#07c160" inactive-color="#000" >
@@ -27,7 +32,6 @@
 <style lang="sass" scoped>
 </style>
 <script>
-  import { mapGetters } from 'vuex'
   export default {
     name: 'App',
     provide () {
@@ -56,12 +60,12 @@
           console.log(this.isRouterAlive)
           this.isRouterAlive = true
         })
+      },
+      onBack () {
+        this.$router.go(-1)
       }
     },
     computed: {
-      ...mapGetters([
-        'isLoading'
-      ])
     },
     watch: {
       $route (to, from) {
@@ -79,32 +83,29 @@
   }
 </script>
 
-<style lang="sass" scoped>
+<style lang="scss" scoped>
   .slide-right-enter-active,
   .slide-right-leave-active,
   .slide-left-enter-active,
-  .slide-left-leave-active
-    will-change: transform
-    transition: all 200ms
-    position: absolute
-  .slide-right-enter
-    opacity: 0
-    transform: translate3d(-100%, 0, 0)
-
-  .slide-right-leave-active
-    opacity: 0
-    transform: translate3d(100%, 0, 0)
-  .slide-left-enter
-    opacity: 0
-    transform: translate3d(100%, 0, 0)
-  .slide-left-leave-active
-    opacity: 0
-    transform: translate3d(-100%, 0, 0)
-  .loading
-    display: flex
-    position: fixed
-    width: 100%
-    height: 100%
-    justify-content: center
-    align-items: center
+  .slide-left-leave-active {
+    will-change: transform;
+    transition: all 200ms;
+    position: absolute;
+  }
+  .slide-right-enter {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+  .slide-right-leave-active {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+  .slide-left-enter {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+  .slide-left-leave-active {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
 </style>

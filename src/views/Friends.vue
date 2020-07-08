@@ -1,13 +1,25 @@
 <template>
   <div class="friends">
-    <van-nav-bar v-if="this.$route.meta.showNavBar" :title="this.$route.meta.navBarTitle" fixed>
-    </van-nav-bar>
-    <Container></Container>
+    <Container>
+      <van-skeleton title avatar :row="3" :loading="loading" :round="true">
+        <div>实际内容</div>
+      </van-skeleton>
+    </Container>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'Friends'
+    name: 'Friends',
+    data () {
+      return {
+        loading: true
+      }
+    },
+    mounted () {
+      setTimeout(() => {
+        this.loading = false
+      }, 1000)
+    }
   }
 </script>

@@ -36,7 +36,7 @@ const toLogin = () => {
  * 请求失败后的错误统一处理
  * @param {Number} status 请求失败的状态码
  */
-const errorHandle = (status, other) => {
+const errorHandle = (status, errorMessage) => {
   // 状态码判断
   switch (status) {
     // 401: 未登录状态，跳转登录页
@@ -53,12 +53,8 @@ const errorHandle = (status, other) => {
         toLogin()
       }, 1000)
       break
-    // 404请求不存在
-    case 404:
-      tip('请求的资源不存在')
-      break
     default:
-      console.log(other)
+      store.commit('errorMessage', errorMessage)
   }
 }
 
@@ -95,6 +91,7 @@ instance.interceptors.response.use(
   res => {
     if (res.status === 200) {
       store.commit('changeNetworkSuccess', true)
+      store.commit('errorMessage', null)
         store.commit('hideLoading')
         return Promise.resolve(res)
     } else {
@@ -104,10 +101,11 @@ instance.interceptors.response.use(
   },
   // 请求失败
   error => {
+    debugger
     const { response } = error
     if (response) {
       // 请求已发出，但是不在2xx的范围
-      errorHandle(response.status, response.data.message)
+      errorHandle(response.status, response.data.Message)
       store.commit('hideLoading')
       return Promise.reject(response)
     } else {
