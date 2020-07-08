@@ -1,7 +1,5 @@
 <template>
   <div class="detail">
-    <!--<van-nav-bar left-text="返回" left-arrow title="详情" fixed @click-left="onBack">-->
-    <!--</van-nav-bar>-->
     <Container></Container>
   </div>
 </template>
