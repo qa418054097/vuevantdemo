@@ -11,7 +11,7 @@ const getters = {
 }
 
 const actions = {
-  sysParams ({ commit, state, rootState }) {
+  sysParams({ commit, state, rootState }) {
     rootState.requesting = true
     commit(TYPE.SYSPARAMS_REQUEST)
     baseDataApi.GetSysParams().then((response) => {
@@ -24,11 +24,11 @@ const actions = {
 }
 
 const mutations = {
-  [TYPE.SYSPARAMS_REQUEST] (state) {},
-  [TYPE.SYSPARAMS_SUCCESS] (state, sysParams) {
+  [TYPE.SYSPARAMS_REQUEST](state) {},
+  [TYPE.SYSPARAMS_SUCCESS](state, sysParams) {
     state.sysParams = sysParams.data.Data
   },
-  [TYPE.SYSPARAMS_FAILURE] (state) {
+  [TYPE.SYSPARAMS_FAILURE](state) {
   }
 }
 

@@ -2,7 +2,7 @@ import ContainerComponent from './Container'
 import RefreshComponent from './Refresh'
 
 const Container = {
-  install: function (Vue) {
+  install: function(Vue) {
     Vue.component('Container', ContainerComponent)
     Vue.component('Refresh', RefreshComponent)
   }

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '../views/Home'
 
 Vue.use(VueRouter)
 
@@ -40,7 +40,7 @@ const routes = [
       noTransition: true,
       keepAlive: true
     },
-    component: () => import('../views/Search.vue')
+    component: () => import('../views/Search')
   },
   {
     path: '/friends',
@@ -53,7 +53,7 @@ const routes = [
       noTransition: true,
       keepAlive: true
     },
-    component: () => import('../views/Friends.vue')
+    component: () => import('../views/Friends')
   },
   {
     path: '/setting',
@@ -66,7 +66,7 @@ const routes = [
       noTransition: true,
       keepAlive: true
     },
-    component: () => import('../views/Setting.vue')
+    component: () => import('../views/Setting')
   },
   {
     path: '/detail',
@@ -75,7 +75,7 @@ const routes = [
       navBarTitle: '详情',
       showNavBar: true
     },
-    component: () => import('../views/Detail.vue')
+    component: () => import('../views/Detail')
   }
 ]
 
@@ -83,7 +83,7 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
-  scrollBehavior (to, from, savedPosition) {
+  scrollBehavior(to, from, savedPosition) {
     debugger
     if (savedPosition) {
       return savedPosition

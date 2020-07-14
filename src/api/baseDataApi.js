@@ -5,18 +5,18 @@ const baseDataApi = {
    * 获取系统参数
    *
    * */
-  GetSysParams () {
+  GetSysParams() {
     return axios.get('/BaseDataApi/GetSysParams')
   },
   /**
    * fun: 是否注册商家
    * account : 商家账号
    * */
-  GetMerchantId (account) {
-    return axios.get('/BaseDataApi/GetMerchantId', { params: { account: account } })
+  GetMerchantId(account) {
+    return axios.get('/BaseDataApi/GetMerchantId', { params: { account: account }})
   },
   // 商家登录
-  CheckPaymentPassword (obj) {
+  CheckPaymentPassword(obj) {
     return axios.post('/BaseDataApi/CheckPaymentPassword', obj)
   }
 }

@@ -7,6 +7,7 @@ import 'amfe-flexible'
 import 'normalize.css'
 import { Button, Cell, CellGroup, Icon, Image as VanImage, Col, Row, Popup, Tabbar, TabbarItem, NavBar, Empty, Loading, PullRefresh, List, Skeleton } from 'vant'
 import { Container } from './components/common'
+import './styles/index.scss' // 全局样式
 
 Vue.prototype.$api = api
 // app容器
@@ -34,7 +35,6 @@ Vue.use(PullRefresh)
 Vue.use(List)
 // Vant骨架屏
 Vue.use(Skeleton)
-
 
 Vue.config.productionTip = false
 

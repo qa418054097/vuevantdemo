@@ -4,7 +4,6 @@ import Vuex from 'vuex'
 import testStore from './modules/testStore'
 Vue.use(Vuex)
 
-
 const state = {
   isLoading: false,
   networkSuccess: true,
@@ -21,19 +20,19 @@ const getters = {
 }
 
 const mutations = {
-  loginSuccess (state, token) {
+  loginSuccess(state, token) {
     state.token = token
   },
-  changeNetworkSuccess (state, val) {
+  changeNetworkSuccess(state, val) {
     state.networkSuccess = val
   },
-  showLoading (state) {
+  showLoading(state) {
     state.isLoading = true
   },
-  hideLoading (state) {
+  hideLoading(state) {
     state.isLoading = false
   },
-  errorMessage (state, message) {
+  errorMessage(state, message) {
     debugger
     state.error = message
   }

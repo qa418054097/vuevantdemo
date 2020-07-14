@@ -1,5 +1,5 @@
-const path = require('path')
-const resolve = dir => path.join(__dirname, dir)
+// const path = require('path')
+// const resolve = dir => path.join(__dirname, dir)
 
 module.exports = {
   css: {
@@ -14,21 +14,21 @@ module.exports = {
         ]
       }
     }
-  },
-  chainWebpack: config => {
-    // 配置全局Sass样式
-    const oneOfsMap = config.module.rule('scss').oneOfs.store
-    oneOfsMap.forEach(item => {
-      item
-        .use('sass-resources-loader')
-        .loader('sass-resources-loader')
-        .options({
-          // Provide path to the file with resources
-          // Or array of paths
-          resources: ['./src/common.scss']
-        })
-        .end()
-    })
   }
+  // chainWebpack: config => {
+  //   // 配置全局Sass样式
+  //   const oneOfsMap = config.module.rule('scss').oneOfs.store
+  //   oneOfsMap.forEach(item => {
+  //     item
+  //       .use('sass-resources-loader')
+  //       .loader('sass-resources-loader')
+  //       .options({
+  //         // Provide path to the file with resources
+  //         // Or array of paths
+  //         resources: ['./src/variables.scss']
+  //       })
+  //       .end()
+  //   })
+  // }
 
 }

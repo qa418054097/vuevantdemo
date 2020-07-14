@@ -92,8 +92,8 @@ instance.interceptors.response.use(
     if (res.status === 200) {
       store.commit('changeNetworkSuccess', true)
       store.commit('errorMessage', null)
-        store.commit('hideLoading')
-        return Promise.resolve(res)
+      store.commit('hideLoading')
+      return Promise.resolve(res)
     } else {
       store.commit('hideLoading')
       return Promise.reject(res)

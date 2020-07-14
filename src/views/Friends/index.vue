@@ -9,17 +9,17 @@
 </template>
 
 <script>
-  export default {
-    name: 'Friends',
-    data () {
-      return {
-        loading: true
-      }
-    },
-    mounted () {
-      setTimeout(() => {
-        this.loading = false
-      }, 1000)
+export default {
+  name: 'Friends',
+  data() {
+    return {
+      loading: true
     }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.loading = false
+    }, 1000)
   }
+}
 </script>
