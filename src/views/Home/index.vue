@@ -1,8 +1,6 @@
 <template>
   <div class="home">
-    <!--<van-nav-bar v-if="this.$route.meta.showNavBar" :title="this.$route.meta.navBarTitle" fixed>-->
-    <!--</van-nav-bar>-->
-    <Container ref="container" :refresh-enabled="true" @refresh="onRefresh">
+    <Container ref="container" :has-nav-bar="true" :has-tab-bar="true" :refresh-enabled="true" @refresh="onRefresh">
       <van-list
         v-model="loading"
         :finished="finished"
@@ -24,8 +22,10 @@
 </style>
 <script>
 import { mapGetters } from 'vuex'
+import scrollTopMixin from '@/mixin/scrollTopHandler'
 export default {
   name: 'Home',
+  mixins: [scrollTopMixin],
   data() {
     return {
       api: '',
@@ -34,15 +34,10 @@ export default {
       finished: false
     }
   },
-  created() {
-    // this.$api.baseDataApi.GetSysParams()
-    // this.$api.baseDataApi.GetMerchantId('13950956173')
-    // this.$api.baseDataApi.CheckPaymentPassword({ userType: '0', userId: '10001', paymentPassword: '123456' })
-  },
   computed: {
-    ...mapGetters([
-      'sysParams'
-    ])
+    ...mapGetters({
+      sysParams: 'testStore/sysParams'
+    })
   },
   methods: {
     onLoad() {
@@ -71,6 +66,9 @@ export default {
       this.loading = true
       this.onLoad()
     }
+  },
+  mounted() {
+    console.log(this.sysParams)
   }
 }
 </script>

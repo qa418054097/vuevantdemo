@@ -1,21 +1,19 @@
 <template>
   <div id="app">
-    <van-nav-bar v-if="this.$route.meta.showNavBar" :left-text="!this.$route.meta.noShowBackBtn ? '返回' : ''" :left-arrow="!this.$route.meta.noShowBackBtn" :title="this.$route.meta.navBarTitle" fixed @click-left="onBack" />
+    <van-nav-bar v-if="this.$route.meta.showNavBar" :left-arrow="!this.$route.meta.noShowBackBtn" :left-text="!this.$route.meta.noShowBackBtn ? '返回' : ''" :title="this.$route.meta.navBarTitle" fixed @click-left="onBack" />
     <transition :name="transitionName">
       <keep-alive>
         <router-view
           v-if="isRouterAlive && $route.meta.keepAlive"
-          :class="{'has-nav-bar' : this.$route.meta.showNavBar , 'has-tab-bar' : this.$route.meta.showTabBar }"
         />
       </keep-alive>
     </transition>
     <transition :name="transitionName">
       <router-view
         v-if="isRouterAlive && !$route.meta.keepAlive"
-        :class="{'has-nav-bar' : this.$route.meta.showNavBar , 'has-tab-bar' : this.$route.meta.showTabBar }"
       />
     </transition>
-    <van-tabbar v-if="this.$route.meta.showTabBar" route active-color="#07c160" inactive-color="#000">
+    <van-tabbar v-if="$route.meta.showTabBar" route :active-color="variables.appThemeColor" inactive-color="#000">
       <van-tabbar-item replace to="/home" icon="home-o">
         首页
       </van-tabbar-item>
@@ -35,6 +33,7 @@
 <style lang="scss" scoped>
 </style>
 <script>
+import variables from '@/styles/variables.scss'
 export default {
   name: 'App',
   provide() {
@@ -50,6 +49,9 @@ export default {
     }
   },
   computed: {
+    variables() {
+      return variables
+    }
   },
   watch: {
     $route(to, from) {
@@ -92,7 +94,7 @@ export default {
   .slide-left-enter-active,
   .slide-left-leave-active {
     will-change: transform;
-    transition: all 200ms;
+    transition: all 360ms;
     position: absolute;
   }
   .slide-right-enter {

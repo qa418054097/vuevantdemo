@@ -1,14 +1,62 @@
 <template>
   <div class="setting">
-    <!--<van-nav-bar v-if="this.$route.meta.showNavBar" :title="this.$route.meta.navBarTitle" fixed>-->
-    <!--</van-nav-bar>-->
-    <Container />
+    <Container :has-nav-bar="true" :has-tab-bar="true">
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+      <div>setting</div>
+    </Container>
   </div>
 </template>
 
 <script>
+import scrollTopMixin from '@/mixin/scrollTopHandler'
 export default {
   name: 'Setting',
+  mixins: [scrollTopMixin],
   data() {
     return {
     }

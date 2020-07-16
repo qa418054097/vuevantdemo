@@ -1,6 +1,6 @@
 <template>
   <div class="detail">
-    <Container />
+    <Container :has-nav-bar="true" />
   </div>
 </template>
 

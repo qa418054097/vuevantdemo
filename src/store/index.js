@@ -5,18 +5,17 @@ import testStore from './modules/testStore'
 Vue.use(Vuex)
 
 const state = {
-  isLoading: false,
-  networkSuccess: true,
-  requesting: false,
-  error: null,
+  isLoading: false, // 加载状态
+  networkSuccess: true, // 网络状态
+  error: null, // 接口报错信息
   token: '' // 缓存用户登录后后端接口返回的Token
 }
 
 const getters = {
   isLoading: state => state.isLoading,
   networkSuccess: state => state.networkSuccess,
-  requesting: state => state.requesting,
-  error: state => state.error
+  error: state => state.error,
+  token: state => state.token
 }
 
 const mutations = {

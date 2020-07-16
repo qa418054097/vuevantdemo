@@ -82,19 +82,7 @@ const routes = [
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes,
-  scrollBehavior(to, from, savedPosition) {
-    debugger
-    if (savedPosition) {
-      return savedPosition
-    } else {
-      if (from.meta.keepAlive) {
-        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
-        from.meta.savedPosition = scrollTop
-      }
-      return { x: 0, y: to.meta.savedPosition || 0 }
-    }
-  }
+  routes
 })
 
 export default router

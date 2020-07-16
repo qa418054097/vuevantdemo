@@ -3,7 +3,7 @@ import * as TYPE from '../actionType/testType'
 
 const { baseDataApi } = api
 const state = {
-  sysParams: []
+  sysParams: ['test']
 }
 
 const getters = {
@@ -33,6 +33,7 @@ const mutations = {
 }
 
 export default {
+  namespaced: true,
   state,
   getters,
   actions,

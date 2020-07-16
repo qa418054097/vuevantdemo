@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <div v-if="networkSuccess && !error" class="container">
-      <van-pull-refresh v-model="refreshing" :disabled="disabled" @refresh="onRefresh">
+  <div class="app-container" :class="{'has-nav-bar' : hasNavBar , 'has-tab-bar' : hasTabBar }">
+    <div v-if="networkSuccess && !error">
+      <van-pull-refresh v-model="refreshing" :disabled="disabled"  @refresh="onRefresh">
         <slot />
       </van-pull-refresh>
       <div v-if="isLoading" class="loading">
-        <van-loading type="spinner" color="#07c160" size="36px" />
+        <van-loading type="spinner" :color="variables.appThemeColor" size="36px" />
       </div>
     </div>
     <Refresh />
@@ -14,25 +14,31 @@
 
 <script>
 import { mapState } from 'vuex'
+import variables from '@/styles/variables.scss'
 export default {
   name: 'Container',
   props: {
     refreshEnabled: {
       type: Boolean,
-      value: false
+      required: false
+    },
+    hasNavBar: {
+      type: Boolean,
+      required: false
+    },
+    hasTabBar: {
+      type: Boolean,
+      required: false
     }
   },
   data() {
     return {
       refreshing: false,
-      refreshDisabled: false
+      refreshDisabled: false,
+      scrollTop: 0
     }
   },
   mounted() {
-    window.addEventListener('scroll', this.handleScroll, true)
-  },
-  destroyed() {
-    window.removeEventListener('scroll', this.handleScroll, true)
   },
   methods: {
     onRefresh() {
@@ -43,38 +49,41 @@ export default {
     },
     finishRefresh() {
       this.refreshing = false
-    },
-    getScrollTop() {
-      var scrollTop = window.pageYOffset ||
-          document.documentElement.scrollTop ||
-          document.body.scrollTop ||
-          0
-      return scrollTop
-    },
-    handleScroll() {
-      debugger
-      const windowScrollY = this.getScrollTop()
-      if (windowScrollY > 0) {
-        this.refreshDisabled = true
-      } else {
-        this.refreshDisabled = false
-      }
     }
   },
   computed: {
     ...mapState(['networkSuccess', 'isLoading', 'error']),
     disabled() {
       return !this.refreshEnabled || this.refreshDisabled
+    },
+    variables() {
+      return variables
     }
+  },
+  destroyed() {
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .container {
+  @import "~@/styles/variables.scss";
+  .app-container {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    overflow-y: scroll;
+    &::-webkit-scrollbar{
+      width:0px;
+    }
+    &.has-nav-bar {
+      height: calc(100vh - #{$navBarHeight});
+    }
+    &.has-tab-bar {
+      height: calc(100vh - #{$tabBarHeight});
+    }
+    &.has-nav-bar.has-tab-bar {
+      height: calc(100vh - #{$navBarHeight} - #{$tabBarHeight});
+    }
     .loading {
       position: absolute;
       display: flex;
