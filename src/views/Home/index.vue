@@ -33,6 +33,9 @@ export default {
       sysParams: 'testStore/sysParams'
     })
   },
+  mounted() {
+    console.log(this.sysParams)
+  },
   methods: {
     onLoad() {
       const containerRef = this.$refs.container
@@ -60,9 +63,6 @@ export default {
       this.loading = true
       this.onLoad()
     }
-  },
-  mounted() {
-    console.log(this.sysParams)
   }
 }
 </script>

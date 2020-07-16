@@ -82,7 +82,10 @@ export default {
     },
     onBack() { // 调用当前路由组件内的返回方法
       debugger
-      this.$route.matched[0].instances.default.onBack()
+      const routeView = this.$route.matched[0].instances.default
+      if (routeView) {
+        routeView.onBack()
+      }
     }
   }
 }

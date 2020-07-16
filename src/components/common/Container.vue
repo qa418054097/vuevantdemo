@@ -1,15 +1,15 @@
 <template>
-    <div class="app-container" :class="{'has-nav-bar' : hasNavBar , 'has-tab-bar' : hasTabBar }">
-      <div v-if="networkSuccess && !error">
-        <van-pull-refresh v-model="refreshing" :disabled="disabled"  @refresh="onRefresh">
-          <slot />
-        </van-pull-refresh>
-        <div v-if="isLoading" class="loading">
-          <van-loading type="spinner" :color="variables.appThemeColor" size="36px" />
-        </div>
+  <div class="app-container" :class="{'has-nav-bar' : hasNavBar , 'has-tab-bar' : hasTabBar }">
+    <div v-if="networkSuccess && !error">
+      <van-pull-refresh v-model="refreshing" :disabled="disabled" @refresh="onRefresh">
+        <slot />
+      </van-pull-refresh>
+      <div v-if="isLoading" class="loading">
+        <van-loading type="spinner" :color="variables.appThemeColor" size="36px" />
       </div>
-      <Refresh />
     </div>
+    <Refresh />
+  </div>
 </template>
 
 <script>
@@ -38,7 +38,14 @@ export default {
       scrollTop: 0
     }
   },
-  mounted() {
+  computed: {
+    ...mapState(['networkSuccess', 'isLoading', 'error']),
+    disabled() {
+      return !this.refreshEnabled || this.refreshDisabled
+    },
+    variables() {
+      return variables
+    }
   },
   methods: {
     onRefresh() {
@@ -50,17 +57,6 @@ export default {
     finishRefresh() {
       this.refreshing = false
     }
-  },
-  computed: {
-    ...mapState(['networkSuccess', 'isLoading', 'error']),
-    disabled() {
-      return !this.refreshEnabled || this.refreshDisabled
-    },
-    variables() {
-      return variables
-    }
-  },
-  destroyed() {
   }
 }
 </script>
@@ -71,7 +67,8 @@ export default {
     position: relative;
     width: 100%;
     height: 100vh;
-    overflow-y: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
     &::-webkit-scrollbar{
       width:0px;
     }
