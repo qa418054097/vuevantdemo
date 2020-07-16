@@ -1,15 +1,15 @@
 <template>
-  <div class="app-container" :class="{'has-nav-bar' : hasNavBar , 'has-tab-bar' : hasTabBar }">
-    <div v-if="networkSuccess && !error">
-      <van-pull-refresh v-model="refreshing" :disabled="disabled"  @refresh="onRefresh">
-        <slot />
-      </van-pull-refresh>
-      <div v-if="isLoading" class="loading">
-        <van-loading type="spinner" :color="variables.appThemeColor" size="36px" />
+    <div class="app-container" :class="{'has-nav-bar' : hasNavBar , 'has-tab-bar' : hasTabBar }">
+      <div v-if="networkSuccess && !error">
+        <van-pull-refresh v-model="refreshing" :disabled="disabled"  @refresh="onRefresh">
+          <slot />
+        </van-pull-refresh>
+        <div v-if="isLoading" class="loading">
+          <van-loading type="spinner" :color="variables.appThemeColor" size="36px" />
+        </div>
       </div>
+      <Refresh />
     </div>
-    <Refresh />
-  </div>
 </template>
 
 <script>

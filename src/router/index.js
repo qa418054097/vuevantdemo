@@ -21,13 +21,6 @@ const routes = [
       noTransition: true,
       keepAlive: true
     }
-    // children: [
-    //   {
-    //     path: 'detail',
-    //     name: 'Detail',
-    //     component: () => import('../views/Detail.vue')
-    //   }
-    // ]
   },
   {
     path: '/search',

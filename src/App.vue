@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <van-nav-bar v-if="this.$route.meta.showNavBar" :left-arrow="!this.$route.meta.noShowBackBtn" :left-text="!this.$route.meta.noShowBackBtn ? '返回' : ''" :title="this.$route.meta.navBarTitle" fixed @click-left="onBack" />
+    <van-nav-bar v-if="$route.meta.showNavBar" :left-arrow="!$route.meta.noShowBackBtn" :left-text="!$route.meta.noShowBackBtn ? '返回' : ''" :title="$route.meta.navBarTitle" fixed @click-left="onBack" />
     <transition :name="transitionName">
       <keep-alive>
         <router-view
@@ -74,43 +74,19 @@ export default {
     })
   },
   methods: {
-    reload() {
+    reload() { // 重新加载当前页面
       this.isRouterAlive = false
       this.$nextTick(function() {
-        console.log(this.isRouterAlive)
         this.isRouterAlive = true
       })
     },
-    onBack() {
-      this.$router.go(-1)
+    onBack() { // 调用当前路由组件内的返回方法
+      debugger
+      this.$route.matched[0].instances.default.onBack()
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .slide-right-enter-active,
-  .slide-right-leave-active,
-  .slide-left-enter-active,
-  .slide-left-leave-active {
-    will-change: transform;
-    transition: all 360ms;
-    position: absolute;
-  }
-  .slide-right-enter {
-    opacity: 0;
-    transform: translate3d(-100%, 0, 0);
-  }
-  .slide-right-leave-active {
-    opacity: 0;
-    transform: translate3d(100%, 0, 0);
-  }
-  .slide-left-enter {
-    opacity: 0;
-    transform: translate3d(100%, 0, 0);
-  }
-  .slide-left-leave-active {
-    opacity: 0;
-    transform: translate3d(-100%, 0, 0);
-  }
 </style>

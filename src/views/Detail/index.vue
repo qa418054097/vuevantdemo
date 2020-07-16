@@ -13,6 +13,7 @@ export default {
   },
   methods: {
     onBack() {
+      console.log('detail')
       this.$router.go(-1)
     }
   }

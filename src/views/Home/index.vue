@@ -13,12 +13,6 @@
   </div>
 </template>
 <style lang="scss" scoped>
-  .doge {
-    width: 140px;
-    height: 72px;
-    margin-top: 8px;
-    border-radius: 4px;
-  }
 </style>
 <script>
 import { mapGetters } from 'vuex'
