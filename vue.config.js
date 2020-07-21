@@ -2,6 +2,11 @@
 // const resolve = dir => path.join(__dirname, dir)
 const webpack = require('webpack')
 module.exports = {
+  //基本路径
+  publicPath: './',
+  //输出文件目录
+  outputDir: '../cordova-app/www',
+  productionSourceMap:false, //不生成map
   css: {
     loaderOptions: {
       postcss: {
@@ -16,7 +21,6 @@ module.exports = {
     }
   },
   configureWebpack: {
-
     plugins: [
       new webpack.ProvidePlugin({
         $: 'jquery',
@@ -24,7 +28,7 @@ module.exports = {
         'windows.jQuery': 'jquery'
       })
     ]
-
   }
+
 
 }

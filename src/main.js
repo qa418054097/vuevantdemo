@@ -11,10 +11,10 @@ import '@/components' // vant组件引入
 import $ from 'jquery' // 引入jquery库
 import { Container } from './components/common' // 自定义全局组件
 
-if (process.env.NODE_ENV === 'development') { // 模拟数据
-  const { mockXHR } = require('../mock')
-  mockXHR()
-}
+// if (process.env.NODE_ENV === 'development') { // 模拟数据
+const { mockXHR } = require('../mock')
+mockXHR()
+// }
 Vue.prototype.$ = $
 Vue.prototype.$api = api
 // app容器

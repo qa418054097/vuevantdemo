@@ -30,11 +30,9 @@ const mutations = {
 const actions = {
   // user login
   login({ commit }, userInfo) {
-    debugger
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password }).then(response => {
-        debugger
         const { data } = response.data
         commit('SET_TOKEN', data.token)
         setToken(data.token)
@@ -69,9 +67,7 @@ const actions = {
   // user logout
   logout({ commit, state }) {
     return new Promise((resolve, reject) => {
-      debugger
       logout(state.token).then(() => {
-        debugger
         removeToken() // must remove  token  first
         resetRouter()
         commit('RESET_STATE')
