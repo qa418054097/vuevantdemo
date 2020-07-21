@@ -1,0 +1,15 @@
+@import './variables.scss';
+@import './mixin.scss';
+@import './transition.scss';
+@import './navbar.scss';
+
+#app {
+  overflow-x: hidden;
+}
+.has-nav-bar {
+  margin-top: #{$navBarHeight};
+}
+.has-tab-bar {
+  margin-bottom: #{$tabBarHeight}
+}
+
