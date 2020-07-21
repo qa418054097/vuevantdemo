@@ -29,7 +29,6 @@
     </van-tabbar>
   </div>
 </template>
-
 <style lang="scss" scoped>
 </style>
 <script>
