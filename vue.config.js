@@ -1,6 +1,6 @@
 // const path = require('path')
 // const resolve = dir => path.join(__dirname, dir)
-
+const webpack = require('webpack')
 module.exports = {
   css: {
     loaderOptions: {
@@ -14,21 +14,17 @@ module.exports = {
         ]
       }
     }
+  },
+  configureWebpack: {
+
+    plugins: [
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'windows.jQuery': 'jquery'
+      })
+    ]
+
   }
-  // chainWebpack: config => {
-  //   // 配置全局Sass样式
-  //   const oneOfsMap = config.module.rule('scss').oneOfs.store
-  //   oneOfsMap.forEach(item => {
-  //     item
-  //       .use('sass-resources-loader')
-  //       .loader('sass-resources-loader')
-  //       .options({
-  //         // Provide path to the file with resources
-  //         // Or array of paths
-  //         resources: ['./src/variables.scss']
-  //       })
-  //       .end()
-  //   })
-  // }
 
 }

@@ -1,13 +1,27 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home'
+import Home from '@/views/Home'
+import Login from '@/views/Login'
 
 Vue.use(VueRouter)
 
-const routes = [
+export const constantRoutes = [
   {
     path: '/',
     redirect: '/home'
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login,
+    meta: {
+      navBarTitle: '登录',
+      noShowBackBtn: true,
+      showNavBar: true,
+      showTabBar: false,
+      noTransition: true,
+      keepAlive: false
+    }
   },
   {
     path: '/home',
@@ -33,7 +47,7 @@ const routes = [
       noTransition: true,
       keepAlive: true
     },
-    component: () => import('../views/Search')
+    component: () => import('@/views/Search')
   },
   {
     path: '/friends',
@@ -46,7 +60,7 @@ const routes = [
       noTransition: true,
       keepAlive: true
     },
-    component: () => import('../views/Friends')
+    component: () => import('@/views/Friends')
   },
   {
     path: '/setting',
@@ -59,7 +73,7 @@ const routes = [
       noTransition: true,
       keepAlive: true
     },
-    component: () => import('../views/Setting')
+    component: () => import('@/views/Setting')
   },
   {
     path: '/detail',
@@ -68,14 +82,21 @@ const routes = [
       navBarTitle: '详情',
       showNavBar: true
     },
-    component: () => import('../views/Detail')
+    component: () => import('@/views/Detail')
   }
 ]
 
-const router = new VueRouter({
+const createRouter = () => new VueRouter({
+  scrollBehavior: () => ({ y: 0 }),
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes: constantRoutes
 })
 
+const router = createRouter()
+export function resetRouter() {
+  debugger
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher // reset router
+}
 export default router

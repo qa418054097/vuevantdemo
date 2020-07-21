@@ -30,11 +30,11 @@ export default {
   },
   computed: {
     ...mapGetters({
-      sysParams: 'testStore/sysParams'
+      // sysParams: 'testStore/sysParams'
     })
   },
   mounted() {
-    console.log(this.sysParams)
+    // console.log(this.sysParams)
   },
   methods: {
     onLoad() {

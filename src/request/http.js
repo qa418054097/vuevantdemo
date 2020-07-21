@@ -3,8 +3,9 @@
  * 请求拦截、响应拦截、错误统一处理
  */
 import axios from 'axios'
-import router from '../router'
-import store from '../store/index'
+import router from '@/router'
+import store from '@/store'
+import { removeToken } from '@/utils/auth'
 import { Toast } from 'vant'
 
 /**
@@ -47,7 +48,8 @@ const errorHandle = (status, errorMessage) => {
     // 清除token并跳转登录页
     case 403:
       tip('登录过期，请重新登录')
-      localStorage.removeItem('token')
+      // localStorage.removeItem('token')
+      removeToken()
       store.commit('loginSuccess', null)
       setTimeout(() => {
         toLogin()
@@ -76,7 +78,7 @@ instance.interceptors.request.use(
     // 而后我们可以在响应拦截器中，根据状态码进行一些统一的操作。
     debugger
     store.commit('showLoading')
-    const token = store.state.token
+    const token = store.getters.token
     token && (config.headers.Authorization = token)
     return config
   },

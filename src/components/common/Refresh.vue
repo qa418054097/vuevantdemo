@@ -30,13 +30,13 @@ export default {
   data() {
     return {}
   },
+  computed: {
+    ...mapState(['networkSuccess', 'error'])
+  },
   methods: {
     onRefresh() {
       this.reload()
     }
-  },
-  computed: {
-    ...mapState(['networkSuccess', 'error'])
   }
 }
 </script>

@@ -1,4 +1,4 @@
-import axios from '../request/http' // 导入http中创建的axios实例
+import axios from '@/request/http' // 导入http中创建的axios实例
 
 const baseDataApi = {
   /**
@@ -21,3 +21,4 @@ const baseDataApi = {
   }
 }
 export default baseDataApi
+

@@ -4,9 +4,6 @@
       <van-pull-refresh v-model="refreshing" :disabled="disabled" @refresh="onRefresh">
         <slot />
       </van-pull-refresh>
-      <div v-if="isLoading" class="loading">
-        <van-loading type="spinner" :color="variables.appThemeColor" size="36px" />
-      </div>
     </div>
     <Refresh />
   </div>
@@ -80,14 +77,6 @@ export default {
     }
     &.has-nav-bar.has-tab-bar {
       height: calc(100vh - #{$navBarHeight} - #{$tabBarHeight});
-    }
-    .loading {
-      position: absolute;
-      display: flex;
-      width: 100%;
-      height: 100%;
-      justify-content: center;
-      align-items: center;
     }
   }
 </style>

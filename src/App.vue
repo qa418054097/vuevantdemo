@@ -13,7 +13,7 @@
         v-if="isRouterAlive && !$route.meta.keepAlive"
       />
     </transition>
-    <van-tabbar v-if="$route.meta.showTabBar" route :active-color="variables.appThemeColor" inactive-color="#000">
+    <van-tabbar v-if="$route.meta.showTabBar" route :active-color="variables.appThemeColor" inactive-color="#333">
       <van-tabbar-item replace to="/home" icon="home-o">
         首页
       </van-tabbar-item>
@@ -60,9 +60,9 @@ export default {
         return
       }
       if (to.meta.index > from.meta.index) {
-        this.transitionName = 'slide-left'
+        this.transitionName = 'van-slide-left'
       } else {
-        this.transitionName = 'slide-right'
+        this.transitionName = 'van-slide-right'
       }
     }
   },
@@ -83,8 +83,10 @@ export default {
     onBack() { // 调用当前路由组件内的返回方法
       debugger
       const routeView = this.$route.matched[0].instances.default
-      if (routeView) {
+      if (routeView.onBack) { // 有则调用，无则默认返回
         routeView.onBack()
+      } else {
+        this.$router.go(-1)
       }
     }
   }
