@@ -6,14 +6,12 @@ export default {
     }
   },
   deactivated() {
-    debugger
     const containerRef = document.querySelector('.app-container')
 
     this.scrollTop = containerRef.scrollTop
   },
   activated() {
     this.$nextTick(() => {
-      debugger
       setTimeout(() => {
         const containerRef = document.querySelector('.app-container')
         containerRef.scrollTop = this.scrollTop

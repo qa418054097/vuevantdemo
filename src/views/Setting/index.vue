@@ -1,7 +1,7 @@
 <template>
   <div class="setting">
     <Container :has-nav-bar="true" :has-tab-bar="true">
-      <van-row type="flex" justify="space-around" @click="onLogin">
+      <van-row type="flex" justify="space-around">
         <van-col span="6">
           <van-image
             width="50"
@@ -11,7 +11,7 @@
             :src="avatar"
           />
         </van-col>
-        <van-col span="18">
+        <van-col span="18" @click="onLogin">
           <van-row type="flex" justify="center" align="center">
             {{ token ? name : '请先登录' }}
           </van-row>
@@ -43,7 +43,7 @@ export default {
     },
     async onLogout() {
       await this.$store.dispatch('user/logout')
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+      this.$router.replace(`/login?redirect=${this.$route.fullPath}`)
     }
   }
 }

@@ -3,15 +3,14 @@ import store from './store'
 import { Toast } from 'vant'
 import { getToken } from '@/utils/auth' // get token from cookie
 
-const whiteList = ['/login', '/home', '/search', '/setting'] // no redirect whitelist
+// const whiteList = ['/login', '/home', '/search', '/setting'] // no redirect whitelist
 
 router.beforeEach(async(to, from, next) => {
-  debugger
   const hasToken = getToken()
   if (hasToken) {
     if (to.path === '/login') {
       // if is logged in, redirect to the home page
-      next({ path: '/' })
+      next()
     } else {
       const hasGetUserInfo = store.getters.name
       if (hasGetUserInfo) {
@@ -32,9 +31,7 @@ router.beforeEach(async(to, from, next) => {
     }
   } else {
     /* has no token*/
-
-    if (whiteList.indexOf(to.path) !== -1) {
-      // in the free login whitelist, go directly
+    if (to.meta.freeLoginAuth) {
       next()
     } else {
       // other pages that do not have permission to access are redirected to the login page.

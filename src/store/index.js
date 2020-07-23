@@ -33,7 +33,6 @@ const mutations = {
     Toast.clear()
   },
   errorMessage(state, message) {
-    debugger
     state.error = message
   }
 }

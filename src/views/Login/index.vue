@@ -48,27 +48,25 @@ export default {
   watch: {
     $route: {
       handler: function(route) {
+        debugger
         this.redirect = route.query && route.query.redirect
-        if (this.redirect) {
-          this.$route.meta.noShowBackBtn = false
-        }
       },
       immediate: true
     }
   },
   computed: {
-    ...mapGetters(['token'])
+    ...mapGetters(['token']),
   },
   methods: {
     onSubmit(values) {
       console.log('submit', values)
       this.$store.dispatch('user/login', this.loginForm).then(() => {
-        this.$router.push({ path: this.redirect || '/' })
+        this.$router.replace({ path: this.redirect || '/' })
       }).catch(() => {
       })
     },
     onDirectExperience() {
-      this.$router.push({ path: '/' })
+      this.$router.push({ path: this.redirect || '/' })
     }
   }
 }

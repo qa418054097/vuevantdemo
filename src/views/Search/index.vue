@@ -1,7 +1,7 @@
 <template>
   <div class="search">
     <Container :has-nav-bar="true" :has-tab-bar="true">
-      <router-link to="/detail" class="test">页面详情跳转</router-link>
+      <router-link :to="{ path: '/detail', query: { redirect: 'search'}}" class="test">页面详情跳转</router-link>
       <div class="test">jqTest</div>
     </Container>
   </div>

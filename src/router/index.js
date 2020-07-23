@@ -16,11 +16,12 @@ export const constantRoutes = [
     component: Login,
     meta: {
       navBarTitle: '登录',
-      noShowBackBtn: true,
+      noShowBackBtn: false,
       showNavBar: true,
       showTabBar: false,
-      noTransition: true,
-      keepAlive: false
+      pageLevel: 2,
+      keepAlive: false,
+      freeLoginAuth: true
     }
   },
   {
@@ -32,8 +33,9 @@ export const constantRoutes = [
       noShowBackBtn: true,
       showNavBar: true,
       showTabBar: true,
-      noTransition: true,
-      keepAlive: true
+      pageLevel: 1,
+      keepAlive: true,
+      freeLoginAuth: true
     }
   },
   {
@@ -44,8 +46,9 @@ export const constantRoutes = [
       noShowBackBtn: true,
       showNavBar: true,
       showTabBar: true,
-      noTransition: true,
-      keepAlive: true
+      pageLevel: 1,
+      keepAlive: true,
+      freeLoginAuth: true
     },
     component: () => import('@/views/Search')
   },
@@ -57,8 +60,9 @@ export const constantRoutes = [
       noShowBackBtn: true,
       showNavBar: true,
       showTabBar: true,
-      noTransition: true,
-      keepAlive: true
+      pageLevel: 1,
+      keepAlive: true,
+      freeLoginAuth: true
     },
     component: () => import('@/views/Friends')
   },
@@ -70,8 +74,9 @@ export const constantRoutes = [
       noShowBackBtn: true,
       showNavBar: true,
       showTabBar: true,
-      noTransition: true,
-      keepAlive: true
+      pageLevel: 1,
+      keepAlive: true,
+      freeLoginAuth: true
     },
     component: () => import('@/views/Setting')
   },
@@ -80,7 +85,8 @@ export const constantRoutes = [
     name: 'Detail',
     meta: {
       navBarTitle: '详情',
-      showNavBar: true
+      showNavBar: true,
+      pageLevel: 2,
     },
     component: () => import('@/views/Detail')
   }
@@ -93,6 +99,8 @@ const createRouter = () => new VueRouter({
 })
 
 const router = createRouter()
+
+
 export function resetRouter() {
   const newRouter = createRouter()
   router.matcher = newRouter.matcher // reset router

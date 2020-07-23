@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <van-nav-bar v-if="$route.meta.showNavBar" :left-arrow="!$route.meta.noShowBackBtn" :left-text="!$route.meta.noShowBackBtn ? '返回' : ''" :title="$route.meta.navBarTitle" fixed @click-left="onBack" />
+    <van-nav-bar v-if="$route.meta.showNavBar" :left-arrow="!noShowBackBtn || showBackBtn" :left-text="!noShowBackBtn ? '返回' : ''" :title="$route.meta.navBarTitle" fixed @click-left="onBack" />
     <transition :name="transitionName">
       <keep-alive>
         <router-view
@@ -42,23 +42,27 @@ export default {
   },
   data() {
     return {
-      transitionName: '',
-      noTransitionRoutesMap: {},
-      isRouterAlive: true
+      transitionName: 'van-slide-left',
+      isRouterAlive: true,
+      showBackBtn: false
     }
   },
   computed: {
     variables() {
       return variables
+    },
+    noShowBackBtn() {
+      return this.$route.meta.noShowBackBtn
     }
   },
   watch: {
     $route(to, from) {
-      if (this.noTransitionRoutesMap[to.path] && this.noTransitionRoutesMap[from.path]) {
+      if (to.meta.pageLevel === 1 && from.meta.pageLevel === 1 ) {
         this.transitionName = ''
         return
       }
-      if (to.meta.index > from.meta.index) {
+      debugger
+      if (to.meta.pageLevel > from.meta.pageLevel) {
         this.transitionName = 'van-slide-left'
       } else {
         this.transitionName = 'van-slide-right'
@@ -66,11 +70,7 @@ export default {
     }
   },
   mounted() {
-    this.$router.options.routes.filter((route) => {
-      if (route.meta && route.meta.noTransition) {
-        this.noTransitionRoutesMap[route.path] = true
-      }
-    })
+
   },
   methods: {
     reload() { // 重新加载当前页面
