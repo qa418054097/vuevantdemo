@@ -45,6 +45,9 @@ export default {
       redirect: undefined
     }
   },
+  computed: {
+    ...mapGetters(['token'])
+  },
   watch: {
     $route: {
       handler: function(route) {
@@ -53,9 +56,6 @@ export default {
       },
       immediate: true
     }
-  },
-  computed: {
-    ...mapGetters(['token']),
   },
   methods: {
     onSubmit(values) {

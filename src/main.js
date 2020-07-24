@@ -11,7 +11,6 @@ import '@/components' // vant组件引入
 import $ from 'jquery' // 引入jquery库
 import { Container } from './components/common' // 自定义全局组件
 
-
 const { mockXHR } = require('../mock')
 mockXHR()
 

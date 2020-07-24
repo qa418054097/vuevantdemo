@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <van-nav-bar v-if="$route.meta.showNavBar" :left-arrow="!noShowBackBtn || showBackBtn" :left-text="!noShowBackBtn ? '返回' : ''" :title="$route.meta.navBarTitle" fixed @click-left="onBack" />
+    <van-nav-bar v-if="$route.meta.showNavBar" :left-arrow="!noShowBackBtn" :left-text="!noShowBackBtn ? '返回' : ''" :title="$route.meta.navBarTitle" fixed @click-left="onBack" />
     <transition :name="transitionName">
       <keep-alive>
         <router-view
@@ -57,7 +57,7 @@ export default {
   },
   watch: {
     $route(to, from) {
-      if (to.meta.pageLevel === 1 && from.meta.pageLevel === 1 ) {
+      if (to.meta.pageLevel === 1 && from.meta.pageLevel === 1) {
         this.transitionName = ''
         return
       }

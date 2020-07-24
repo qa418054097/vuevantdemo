@@ -86,7 +86,7 @@ export const constantRoutes = [
     meta: {
       navBarTitle: '详情',
       showNavBar: true,
-      pageLevel: 2,
+      pageLevel: 2
     },
     component: () => import('@/views/Detail')
   }
@@ -99,7 +99,6 @@ const createRouter = () => new VueRouter({
 })
 
 const router = createRouter()
-
 
 export function resetRouter() {
   const newRouter = createRouter()
