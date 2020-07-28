@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <van-nav-bar v-if="$route.meta.showNavBar" :left-arrow="!noShowBackBtn" :left-text="!noShowBackBtn ? '返回' : ''" :title="$route.meta.navBarTitle" fixed @click-left="onBack" />
+    <van-nav-bar v-if="$route.meta.showNavBar" :left-arrow="!noShowBackBtn"  :title="$route.meta.navBarTitle" fixed @click-left="onBack" />
     <transition :name="transitionName">
       <keep-alive>
         <router-view
